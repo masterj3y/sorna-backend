@@ -18,5 +18,7 @@ data class Ad(
         @Column(name = "description", length = 512)
         val description: String,
         @Column(name = "created_at")
-        val createdAt: Long
+        val createdAt: Long,
+        @Column(insertable = false, updatable = false)
+        val liked: Boolean = false
 )

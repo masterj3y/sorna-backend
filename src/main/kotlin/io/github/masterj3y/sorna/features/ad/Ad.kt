@@ -1,9 +1,8 @@
 package io.github.masterj3y.sorna.features.ad
 
+import io.github.masterj3y.sorna.features.ad.ad_picture.AdPicture
 import java.util.*
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 data class Ad(
@@ -21,4 +20,7 @@ data class Ad(
         val createdAt: Long,
         @Column(insertable = false, updatable = false)
         val liked: Boolean = false
-)
+) {
+        @OneToMany(mappedBy = "ad", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
+        var pics: Set<AdPicture> = setOf()
+}

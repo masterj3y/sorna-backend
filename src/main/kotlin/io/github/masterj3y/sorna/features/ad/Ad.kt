@@ -19,7 +19,7 @@ data class Ad(
         @Column(name = "created_at")
         val createdAt: Long,
         @Column(insertable = false, updatable = false)
-        val liked: Boolean = false
+        val saved: Boolean = false
 ) {
         @OneToMany(mappedBy = "ad", cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
         var pics: Set<AdPicture> = setOf()

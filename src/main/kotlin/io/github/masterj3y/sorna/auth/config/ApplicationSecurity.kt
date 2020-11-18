@@ -23,10 +23,10 @@ class ApplicationSecurity @Autowired constructor(private val jwtHelper: JwtHelpe
                 ?.sessionManagement()?.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 ?.and()
                 ?.addFilterBefore(JwtVerifier(jwtHelper), UsernamePasswordAuthenticationFilter::class.java)
-        //?.authorizeRequests()
-        //?.antMatchers("/auth/**")?.permitAll()
-        //?.anyRequest()
-        //?.authenticated()
+                ?.authorizeRequests()
+                ?.antMatchers("/auth/**")?.permitAll()
+                ?.anyRequest()
+                ?.authenticated()
     }
 
 }

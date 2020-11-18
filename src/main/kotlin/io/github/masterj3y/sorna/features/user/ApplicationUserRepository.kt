@@ -5,4 +5,7 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface ApplicationUserRepository : CrudRepository<ApplicationUser, UUID>
+interface ApplicationUserRepository : CrudRepository<ApplicationUser, UUID> {
+
+    fun findByGoogleId(userId: String): Optional<ApplicationUser>
+}

@@ -14,5 +14,9 @@ data class ApplicationUser(
         @Column(name = "last_name", length = 32)
         val lastName: String,
         @Column(name = "profile_pic", length = 22)
-        val profilePic: String
+        val profilePic: String,
+        @Column(name = "google_id")
+        val googleId: String,
+        @Column(name = "email")
+        val email: String
 )

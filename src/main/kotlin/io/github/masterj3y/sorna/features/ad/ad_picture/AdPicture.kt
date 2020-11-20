@@ -8,8 +8,6 @@ import javax.persistence.*
 data class AdPicture(
         @Id
         val id: UUID = UUID.randomUUID(),
-        @Column(name = "ad_id")
-        val adId: UUID,
         @Column(name = "pic_url", length = 20)
         val picUrl: String,
         @ManyToOne(fetch = FetchType.LAZY, optional = false)

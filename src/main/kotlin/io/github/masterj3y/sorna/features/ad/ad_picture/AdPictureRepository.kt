@@ -5,4 +5,9 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface AdPictureRepository : CrudRepository<AdPicture, UUID>
+interface AdPictureRepository : CrudRepository<AdPicture, UUID> {
+
+    fun findAllByAdId(adId: UUID): MutableIterable<AdPicture>
+
+    fun deleteByAdId(adId: UUID)
+}

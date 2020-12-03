@@ -13,7 +13,7 @@ data class ApplicationUser(
         val firstName: String,
         @Column(name = "last_name", length = 32)
         val lastName: String,
-        @Column(name = "profile_pic", length = 22)
+        @Column(name = "profile_pic")
         val profilePic: String,
         @Column(name = "google_id")
         val googleId: String,

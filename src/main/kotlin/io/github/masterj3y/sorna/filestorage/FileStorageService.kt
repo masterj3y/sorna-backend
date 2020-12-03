@@ -42,12 +42,10 @@ class FileStorageService {
 
         const val USER_PROFILE = "user-profile"
         const val AD_PICTURE = "ad-picture"
-        const val CATEGORY = "category"
 
         private val roots: HashMap<String, Path> = hashMapOf(
                 USER_PROFILE to Paths.get(USER_PROFILE),
-                AD_PICTURE to Paths.get(AD_PICTURE),
-                CATEGORY to Paths.get(CATEGORY)
+                AD_PICTURE to Paths.get(AD_PICTURE)
         )
 
         fun generateFileName(directory: String): Path {

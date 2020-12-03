@@ -20,7 +20,7 @@ object JwtConfig {
     }
 
     fun getAccessTokenExpiration(): Date {
-        return Date(System.currentTimeMillis() + (96 * 60 * 60 * 1000))
+        return Date(System.currentTimeMillis() + (31 * 24 * 60 * 60 * 1000))
     }
 
 }

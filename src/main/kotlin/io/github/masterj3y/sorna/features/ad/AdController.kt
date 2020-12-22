@@ -20,13 +20,17 @@ constructor(private val service: AdService) {
             categoryId: String,
             title: String,
             description: String,
+            phoneNumber: String,
+            price: Long,
             pic: Array<MultipartFile>): Ad {
 
         val userId = UUID.fromString(authPrincipal.userId)
         val ad = Ad(
                 categoryId = UUID.fromString(categoryId),
                 title = title,
-                description = description
+                description = description,
+                phoneNumber = phoneNumber,
+                price = price
         )
         return service.save(
                 userId = userId,
@@ -57,6 +61,13 @@ constructor(private val service: AdService) {
     @PutMapping("/save/{adId}")
     fun saveAd(@AuthenticationPrincipal authPrincipal: AuthPrincipal, @PathVariable("adId") adId: String) =
             service.savedAd(
+                    userId = UUID.fromString(authPrincipal.userId),
+                    adId = UUID.fromString(adId)
+            )
+
+    @PutMapping("/waste/{adId}")
+    fun wastedAd(@AuthenticationPrincipal authPrincipal: AuthPrincipal, @PathVariable("adId") adId: String) =
+            service.wastedAd(
                     userId = UUID.fromString(authPrincipal.userId),
                     adId = UUID.fromString(adId)
             )

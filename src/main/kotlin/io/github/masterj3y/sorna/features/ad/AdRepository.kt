@@ -10,10 +10,10 @@ import java.util.*
 @Repository
 interface AdRepository : CrudRepository<Ad, UUID> {
 
-    @Query("SELECT id, user_id ,category_id, title, description, created_at, EXISTS(SELECT * FROM saved_ad saved JOIN application_user u ON u.id = saved.user_id AND saved.ad_id = ad.id WHERE u.id = :userId ) AS saved FROM ad;", nativeQuery = true)
+    @Query("SELECT id, user_id ,category_id, title, description, phone_number, price, created_at, EXISTS(SELECT * FROM saved_ad saved JOIN application_user u ON u.id = saved.user_id AND saved.ad_id = ad.id WHERE u.id = :userId ) AS saved FROM ad;", nativeQuery = true)
     fun findAndLikes(@Param("userId") userId: UUID = UUID.randomUUID()): MutableIterable<Ad>
 
-    @Query("SELECT id, user_id ,category_id, title, description, created_at, EXISTS(SELECT * FROM saved_ad saved JOIN application_user u ON u.id = saved.user_id AND saved.ad_id = ad.id WHERE u.id = :userId ) AS saved FROM ad WHERE LOWER(title) LIKE LOWER(CONCAT('%',:keyword,'%')) OR LOWER(description) LIKE LOWER(CONCAT('%',:keyword,'%'));", nativeQuery = true)
+    @Query("SELECT id, user_id ,category_id, title, description, phone_number, price, created_at, EXISTS(SELECT * FROM saved_ad saved JOIN application_user u ON u.id = saved.user_id AND saved.ad_id = ad.id WHERE u.id = :userId ) AS saved FROM ad WHERE LOWER(title) LIKE LOWER(CONCAT('%',:keyword,'%')) OR LOWER(description) LIKE LOWER(CONCAT('%',:keyword,'%'));", nativeQuery = true)
     fun searchAds(
             @Param("userId") userId: UUID = UUID.randomUUID(),
             @Param("keyword") keyword: String): MutableIterable<Ad>

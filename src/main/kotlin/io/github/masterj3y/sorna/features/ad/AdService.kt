@@ -65,6 +65,10 @@ constructor(private val adRepository: AdRepository,
         savedAdRepository.save(savedAd)
     }
 
+    fun wastedAd(userId: UUID, adId: UUID) {
+        savedAdRepository.deleteByUserIdAndAdId(userId, adId)
+    }
+
     private fun adPicture(picUrl: Path, ad: Ad): AdPicture {
         return AdPicture(
                 picUrl = picUrl.toString(),

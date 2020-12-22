@@ -25,6 +25,7 @@ class ApplicationSecurity @Autowired constructor(private val jwtHelper: JwtHelpe
                 ?.addFilterBefore(JwtVerifier(jwtHelper), UsernamePasswordAuthenticationFilter::class.java)
                 ?.authorizeRequests()
                 ?.antMatchers("/auth/**")?.permitAll()
+                ?.antMatchers("/ad-picture/**")?.permitAll()
                 ?.anyRequest()
                 ?.authenticated()
     }

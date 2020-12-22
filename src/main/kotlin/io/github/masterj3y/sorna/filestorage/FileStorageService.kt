@@ -1,13 +1,17 @@
 package io.github.masterj3y.sorna.filestorage
 
+import org.springframework.core.io.Resource
+import org.springframework.core.io.UrlResource
 import org.springframework.stereotype.Service
 import org.springframework.util.FileSystemUtils
 import org.springframework.web.multipart.MultipartFile
 import java.io.IOException
+import java.net.MalformedURLException
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 import java.util.*
+
 
 @Service
 class FileStorageService {
@@ -31,6 +35,20 @@ class FileStorageService {
             Files.copy(file.inputStream, path)
         } catch (e: Exception) {
             throw RuntimeException("could not store the file, error: ${e.message}")
+        }
+    }
+
+    fun load(path: String, filename: String): Resource {
+        return try {
+            val file: Path = requireNotNull(roots[path]).resolve(filename)
+            val resource: Resource = UrlResource(file.toUri())
+            if (resource.exists() || resource.isReadable) {
+                resource
+            } else {
+                throw RuntimeException("Could not read the file!")
+            }
+        } catch (e: MalformedURLException) {
+            throw RuntimeException("Error: " + e.message)
         }
     }
 

@@ -16,6 +16,10 @@ data class Ad(
         val title: String,
         @Column(name = "description", length = 512)
         val description: String,
+        @Column(name = "phone_number", length = 11)
+        val phoneNumber: String,
+        @Column(name = "price")
+        val price: Long,
         @Column(name = "created_at")
         val createdAt: Long = Date().time,
         val saved: Boolean = false

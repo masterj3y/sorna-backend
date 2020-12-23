@@ -43,6 +43,10 @@ constructor(private val service: AdService) {
     fun getAds(@AuthenticationPrincipal authPrincipal: AuthPrincipal): MutableIterable<Ad> =
             service.getAds(UUID.fromString(authPrincipal.userId))
 
+    @GetMapping("category/{id}")
+    fun getAdsByCategory(@AuthenticationPrincipal authPrincipal: AuthPrincipal, @PathVariable("id") categoryId: String): MutableIterable<Ad> =
+            service.getAdsByCategoryId(UUID.fromString(categoryId))
+
     @GetMapping("user-ads")
     fun getUserAds(@AuthenticationPrincipal authPrincipal: AuthPrincipal): MutableIterable<Ad> =
             service.getUserAds(UUID.fromString(authPrincipal.userId))

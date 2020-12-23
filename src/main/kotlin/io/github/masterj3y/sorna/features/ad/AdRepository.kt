@@ -13,6 +13,8 @@ interface AdRepository : CrudRepository<Ad, UUID> {
     @Query("SELECT *, EXISTS(SELECT * FROM saved_ad saved JOIN application_user u ON u.id = saved.user_id AND saved.ad_id = ad.id WHERE u.id = :userId) AS saved FROM ad ORDER BY created_at DESC", nativeQuery = true)
     fun findAndLikes(@Param("userId") userId: UUID = UUID.randomUUID()): MutableIterable<Ad>
 
+    fun findAllByCategoryId(categoryId: UUID): MutableIterable<Ad>
+
     @Query("SELECT *, EXISTS(SELECT * FROM saved_ad saved JOIN application_user u ON u.id = saved.user_id AND saved.ad_id = ad.id WHERE u.id = :userId) AS saved FROM ad WHERE user_id = :userId ORDER BY created_at DESC", nativeQuery = true)
     fun getUserAds(@Param("userId") userId: UUID): MutableIterable<Ad>
 

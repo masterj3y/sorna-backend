@@ -43,6 +43,8 @@ constructor(private val adRepository: AdRepository,
         return createdAd
     }
 
+    fun getById(adId: UUID): Optional<Ad> = adRepository.findById(adId)
+
     fun getAds(userId: UUID): MutableIterable<Ad> = adRepository.findAndLikes(userId)
 
     fun getAdsByCategoryId(categoryId: UUID): MutableIterable<Ad> = adRepository.findAllByCategoryId(categoryId)

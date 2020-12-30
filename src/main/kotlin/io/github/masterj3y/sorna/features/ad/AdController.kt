@@ -39,6 +39,11 @@ constructor(private val service: AdService) {
         )
     }
 
+    @GetMapping("{id}")
+    fun getById(@AuthenticationPrincipal authPrincipal: AuthPrincipal, @PathVariable("id") adId: String): Optional<Ad> {
+        return service.getById(UUID.fromString(adId))
+    }
+
     @GetMapping
     fun getAds(@AuthenticationPrincipal authPrincipal: AuthPrincipal): MutableIterable<Ad> =
             service.getAds(UUID.fromString(authPrincipal.userId))
